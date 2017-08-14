@@ -1,0 +1,46 @@
+BufferKnife 是一个专注于Android系统的View、Resource、Action注入框架。
+源码
+    https://github.com/JakeWharton/butterknife/
+    http://www.cnblogs.com/wjtaigwh/p/6708935.html
+
+什么是注解
+    一种安全的类似注释的机制，用来将任何的信息或元数据（metadata）与程序元素
+    （类、方法、成员变量等）进行关联。为程序的元素（类、方法、成员变量）加上更
+    直观更明了的说明，这些说明信息是与程序的业务逻辑无关，并且供指定的工具或框架使用
+
+    ---元注解
+    Java中提供了四个元注解，专门注解其它注解
+    @Documented –注解是否将包含在JavaDoc中,是否会保存到 Javadoc 文档中
+    @Inherited – 是否可以被继承，默认为 false
+    @Target –表示注解的作用范围
+        ElementType.FIELD 注解作用于变量
+        ElementType.METHOD 注解作用于方法
+        ElementType.PARAMETER 注解作用于参数
+        ElementType.CONSTRUCTOR 注解作用于构造方法
+        ElementType.LOCAL_VARIABLE 注解作用于局部变量
+        ElementType.PACKAGE 注解作用于包
+    @Retention –表示注解的保留方式
+        RetentionPolicy.SOURCE : 只保留在源码中，不保留在class中，同时也不加载到虚拟机中。
+        在编译阶段丢弃。这些注解在编译结束之后就不再有任何意义，所以它们不会写入字节码。
+
+        RetentionPolicy.CLASS : 保留在源码中，同时也保留到class中，但是不加载到虚拟机中。
+        在类加载的时候丢弃。在字节码文件的处理中有用。注解默认使用这种方式
+
+        RetentionPolicy.RUNTIME : 保留到源码中，同时也保留到class中，最后加载到虚拟机中。
+        始终不会丢弃，运行期也保留该注解，因此可以使
+
+常见注解
+    @Override: 表示该方法是重写父类中的方法，编译的时候会检查该方法，如果这个方法不是父类中存在的将会报错
+    @Deprecated: 表示该方法时已经过时的，表示该方法有风险或者有更好的替代方法
+    @SuppressWarnings: 表示在编译的时候忽略某种错误，如版本检查等
+
+问题
+    怎么知道某个类中包含注解方法的呢？又是在获取注解方法中的相应属性的呢？
+    --使用反射来拿到class中的注解方法，主要使用这句关键代码
+      method.getAnnotation（XXXAnnonation.class）
+
+优点
+   强大的View绑定和Click事件处理功能，简化代码，提升开发效率
+   方便的处理Adapter里的ViewHolder绑定问题
+   运行时不会影响APP效率，使用配置方便
+   代码清晰，可读性强

@@ -1,0 +1,36 @@
+一个针对Android优化的发布/订阅事件总线
+
+主要功能
+    是替代Intent,Handler,BroadCast在Fragment，Activity，
+    Service，线程之间传递消息.优点是开销小，代码更优雅。以及将发送者和接收者解耦
+
+源码
+   https://github.com/greenrobot/EventBus
+
+使用
+    a.定义事件
+    b.接收消息页注册+设置约定方法【必须加@Subscribe注解确认】
+    接收事件方法：
+        1、onEvent
+        该事件在哪个线程发布出来的，onEvent就会在这个线程中运行，发布事件和接收事件线程在同一个线程
+        2、onEventMainThread
+        不论事件是在哪个线程中发布出来的，onEventMainThread都会在UI线程中执行
+        3、onEventBackgroundThread
+        事件分发在子线程，则直接在子线程中运行；在UI发出，则开启新线程运行
+        4、onEventAsync
+        无论事件在哪个线程发布，都会创建新的子线程在执行onEventAsync.
+    c.接收哪个消息，由参数的消息类型决定
+
+优点
+    1.简化组件间的通讯。
+    2.事件发送者和接收者解耦。
+    3.很好地执行活动，片段和背景线程，避免复杂和容易出错的依赖关系和生命周期的问题
+    4.快速而小(大约50K)
+
+缺点
+   滥用事件也会埋坑 如惊群效应，代码连贯性被打断
+   不好调试
+
+模块依赖
+    删除applicationId
+    修改apply plugin: 'com.android.library'

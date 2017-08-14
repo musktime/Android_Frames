@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Frames</string>
+    <string name="name_event">eventbus</string>
+    <string name="name_butter">butterknife</string>
+    <string name="name_rx">rxjava</string>
+    <string name="name_event2">frames</string>
+</resources>
